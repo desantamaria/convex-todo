@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Checkbox } from "@/components/ui/Checkbox";
+import { Checkbox } from "../components/ui/Checkbox";
 import NewTodoForm from "./_components/new-todo-form";
 
 type ToDoItem = {
