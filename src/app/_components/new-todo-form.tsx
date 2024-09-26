@@ -47,7 +47,7 @@ const NewTodoForm = ({ onCreate }: ToDoFormProps) => {
           name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Title</FormLabel>
+              <FormLabel className="font-semibold">Title</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -63,7 +63,7 @@ const NewTodoForm = ({ onCreate }: ToDoFormProps) => {
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Description</FormLabel>
+              <FormLabel className="font-semibold">Description</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -74,7 +74,10 @@ const NewTodoForm = ({ onCreate }: ToDoFormProps) => {
             </FormItem>
           )}
         />
-        <Button className="bg-slate-500 hover:bg-slate-700" type="submit">
+        <Button
+          className="bg-slate-500 hover:bg-slate-700 w-full"
+          type="submit"
+        >
           Submit
         </Button>
       </form>

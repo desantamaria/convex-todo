@@ -16,37 +16,60 @@ export default function Home() {
   ]);
 
   return (
-    <div className="h-screen mx-auto p-4">
-      <h1 className="text-xl font-bold">To-Do List</h1>
-      <ul>
-        {todos.map(({ title, description, completed }, index) => (
-          <li key={index}>
-            <Checkbox
-              checked={completed}
-              onCheckedChange={(checked: boolean) =>
+    <div className="h-screen w-screen flex justify-center items-center">
+      <div className="w-[60vw] flex flex-col gap-5">
+        <h1 className="text-xl font-bold">To-Do List</h1>
+        <ul className="space-y-2">
+          {todos.map(({ title, description, completed }, index) => (
+            <ToDoItem
+              title={title}
+              description={description}
+              completed={completed}
+              onCompleteChanged={(newValue) => {
                 setTodos((prev) => {
                   const newTodos = [...prev];
-                  newTodos[index].completed = checked;
+                  newTodos[index].completed = newValue;
                   return newTodos;
-                })
-              }
-            ></Checkbox>
-            <span className="font-semibold">{title}</span>
-            {description}
-          </li>
-        ))}
-      </ul>
-      <NewTodoForm
-        onCreate={(title, description) => {
-          setTodos((prev) => {
-            const newTodos = [...prev];
-            newTodos.push({ title, description, completed: false });
-            return newTodos;
-          });
-        }}
-      />
+                });
+              }}
+            />
+          ))}
+        </ul>
+        <NewTodoForm
+          onCreate={(title, description) => {
+            setTodos((prev) => {
+              const newTodos = [...prev];
+              newTodos.push({ title, description, completed: false });
+              return newTodos;
+            });
+          }}
+        />
+      </div>
     </div>
   );
 }
 
-// function ToDoItem({title, description, complete, onCompleteChanged})
+function ToDoItem({
+  title,
+  description,
+  completed,
+  onCompleteChanged,
+}: {
+  title: string;
+  description: string;
+  completed: boolean;
+  onCompleteChanged: (newValue: boolean) => void;
+}) {
+  return (
+    <li className="flex gap-2 border rounded p-2 items-center">
+      <Checkbox
+        checked={completed}
+        onCheckedChange={(checked: boolean) => onCompleteChanged(checked)}
+      ></Checkbox>
+      <div>
+        <p className="font-semibold">{title}</p>
+        <p className="text-sm text-gray-300">{description}</p>
+      </div>
+    </li>
+  );
+}
