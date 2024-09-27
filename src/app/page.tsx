@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Checkbox } from "../components/ui/Checkbox";
 import NewTodoForm from "./_components/new-todo-form";
+import { Button } from "@/components/ui/Button";
 
 type ToDoItem = {
   title: string;
@@ -32,6 +33,12 @@ export default function Home() {
                   return newTodos;
                 });
               }}
+              onRemove={() => {
+                setTodos((prev) => {
+                  const newTodos = [...prev].filter((_, i) => i !== index);
+                  return newTodos;
+                });
+              }}
             />
           ))}
         </ul>
@@ -54,14 +61,16 @@ function ToDoItem({
   description,
   completed,
   onCompleteChanged,
+  onRemove,
 }: {
   title: string;
   description: string;
   completed: boolean;
   onCompleteChanged: (newValue: boolean) => void;
+  onRemove: () => void;
 }) {
   return (
-    <li className="flex gap-2 border rounded p-2 items-center">
+    <li className="flex gap-2 border rounded p-2 items-center w-full">
       <Checkbox
         checked={completed}
         onCheckedChange={(checked: boolean) => onCompleteChanged(checked)}
@@ -69,6 +78,14 @@ function ToDoItem({
       <div>
         <p className="font-semibold">{title}</p>
         <p className="text-sm text-gray-300">{description}</p>
+      </div>
+      <div className="ml-auto">
+        <Button
+          className="bg-red-500 hover:bg-red-700"
+          onClick={() => onRemove()}
+        >
+          Remove
+        </Button>
       </div>
     </li>
   );
