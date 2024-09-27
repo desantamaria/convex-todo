@@ -4,6 +4,7 @@ import { useState } from "react";
 import NewTodoForm from "./_components/new-todo-form";
 import { Button } from "@/components/ui/Button";
 import { Label } from "@/components/ui/Label";
+import { Checkbox } from "@/components/ui/Checkbox";
 
 type ToDoItem = {
   title: string;
