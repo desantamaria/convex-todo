@@ -3,7 +3,7 @@
 import { useState } from "react";
 import NewTodoForm from "./_components/new-todo-form";
 import { Button } from "@/components/ui/Button";
-import { Checkbox } from "@/components/ui/Checkbox";
+import { Label } from "@/components/ui/Label";
 
 type ToDoItem = {
   title: string;
@@ -24,6 +24,7 @@ export default function Home() {
           {todos.map(({ title, description, completed }, index) => (
             <ToDoItem
               key={index}
+              index={`${index}`}
               title={title}
               description={description}
               completed={completed}
@@ -58,12 +59,14 @@ export default function Home() {
 }
 
 function ToDoItem({
+  index,
   title,
   description,
   completed,
   onCompleteChanged,
   onRemove,
 }: {
+  index: string;
   title: string;
   description: string;
   completed: boolean;
@@ -73,11 +76,14 @@ function ToDoItem({
   return (
     <li className="flex gap-2 border rounded p-2 items-center w-full">
       <Checkbox
+        id={index}
         checked={completed}
         onCheckedChange={(checked: boolean) => onCompleteChanged(checked)}
       ></Checkbox>
       <div>
-        <p className="font-semibold">{title}</p>
+        <Label htmlFor={index}>
+          <p className="font-semibold">{title}</p>
+        </Label>
         <p className="text-sm text-gray-300">{description}</p>
       </div>
       <div className="ml-auto">
