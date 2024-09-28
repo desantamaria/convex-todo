@@ -15,6 +15,9 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 
+import { useMutation } from "convex/react";
+import { api } from "../../../convex/_generated/api";
+
 // Form Validation
 const formSchema = z.object({
   title: z.string().min(2).max(50),
@@ -25,7 +28,9 @@ type ToDoFormProps = {
   onCreate: (title: string, description: string) => void;
 };
 
-const NewTodoForm = ({ onCreate }: ToDoFormProps) => {
+const NewTodoForm = () => {
+  const createTodo = useMutation(api.functions.createTodo);
+
   // Form Definition
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -36,9 +41,12 @@ const NewTodoForm = ({ onCreate }: ToDoFormProps) => {
   });
 
   // Define a submit handler
-  function onSubmit({ title, description }: z.infer<typeof formSchema>) {
-    onCreate(title, description);
-  }
+  const onSubmit = async ({
+    title,
+    description,
+  }: z.infer<typeof formSchema>) => {
+    await createTodo({ title, description });
+  };
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
