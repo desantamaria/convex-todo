@@ -29,7 +29,8 @@ export default function Home() {
           </SignInButton>
         </Unauthenticated>
         <AuthLoading>
-          <CircularProgress aria-label="Loading ..." />
+          <CircularProgress />
+          <p>Loading ...</p>
         </AuthLoading>
       </div>
     </div>

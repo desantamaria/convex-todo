@@ -7,5 +7,5 @@ export default defineSchema({
         description: v.string(),
         completed: v.boolean(),
         userId: v.string()
-    })
+    }).index("by_user_id", ["userId"])
 })
