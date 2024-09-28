@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ConvexClientProvider } from "./convex-client-provider";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: "Todo",
@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`antialiased`}>
-        <ConvexClientProvider>
+        <Providers>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -25,7 +25,7 @@ export default function RootLayout({
           >
             {children}
           </ThemeProvider>
-        </ConvexClientProvider>
+        </Providers>
       </body>
     </html>
   );
