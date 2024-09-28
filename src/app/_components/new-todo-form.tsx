@@ -79,7 +79,7 @@ const NewTodoForm = () => {
           )}
         />
         <Button
-          className="bg-slate-500 hover:bg-slate-700 w-full"
+          className="bg-purple-500 hover:bg-purple-700 w-full"
           type="submit"
         >
           Submit
