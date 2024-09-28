@@ -24,10 +24,6 @@ const formSchema = z.object({
   description: z.string().min(2).max(50),
 });
 
-type ToDoFormProps = {
-  onCreate: (title: string, description: string) => void;
-};
-
 const NewTodoForm = () => {
   const createTodo = useMutation(api.functions.createTodo);
 
