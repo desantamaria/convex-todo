@@ -7,11 +7,24 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nextui-org/theme/dist/components/[object Object].js"
+    "./node_modules/@nextui-org/theme/dist/components/[object Object].js",
+    "./node_modules/@nextui-org/theme/dist/components/circular-progress.js"
   ],
   theme: {
   	extend: {}
   },
-  plugins: [require("tailwindcss-animate"),nextui()],
+  plugins: [nextui({
+    themes: {
+        dark: {
+            colors: {
+                primary: {
+                    DEFAULT: "#a855f7",
+                    foreground: "#000000",
+                },
+                focus: "#BEF264",
+            }
+        }
+    }
+  })],
 };
 export default config;

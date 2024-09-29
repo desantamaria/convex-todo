@@ -21,16 +21,20 @@ export default function Home() {
           <NewTodoForm />
         </Authenticated>
         <Unauthenticated>
-          <p className="text-white">Please sign in to continue</p>
-          <SignInButton>
-            <Button className="bg-purple-500 hover:bg-purple-700">
-              Sign in
-            </Button>
-          </SignInButton>
+          <div className="h-screen flex items-center justify-center flex-col gap-3">
+            <p className="text-white">Please sign in to continue</p>
+            <SignInButton>
+              <Button className="bg-purple-500 hover:bg-purple-700">
+                Sign in
+              </Button>
+            </SignInButton>
+          </div>
         </Unauthenticated>
         <AuthLoading>
-          <CircularProgress />
-          <p>Loading ...</p>
+          <div className="h-screen flex items-center justify-center flex-col gap-3">
+            <CircularProgress color="primary" aria-label="Loading..." />
+            <p>Loading...</p>
+          </div>
         </AuthLoading>
       </div>
     </div>
